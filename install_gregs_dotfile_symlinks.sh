@@ -2,8 +2,9 @@
 dotfilesource=~/git/dotfiles/testvm
 dotfileorig=~/dotfiles_orig
 homedirdotfiles=".bashrc .bash_profile .gitconfig .tmux.conf .xinitrc .Xresources"
+emacsinit="init.el"
 
-echo "Creating backup of original dotfiles in $dotfileorig"
+echo "Backups of original dotfiles will be created in $dotfileorig"
 mkdir -p $dotfileorig
 
 for file in $homedirdotfiles; do
@@ -18,6 +19,23 @@ for file in $homedirdotfiles; do
 
 echo "Creating symlink to $file in ~"
 ln -s $dotfilesource/$file ~/$file
+
+
+done
+
+
+for file in $emacsinit; do
+    
+    # backup file if an original exists
+    if [ -f ~/.emacs.d/$file ]
+	then
+	echo "Creating backup of original $file in $dotfileorig"
+	mv ~/.emacs.d/$file $dotfileorig
+	
+    fi
+
+echo "Creating symlink to $file in ~"
+ln -s $dotfilesource/$file ~/.emacs.d/$file
 
 
 done
