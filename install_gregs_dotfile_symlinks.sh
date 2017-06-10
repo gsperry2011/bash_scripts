@@ -1,3 +1,4 @@
+#!/bin/sh
 
 dotfilesource=~/git/dotfiles/testvm
 dotfileorig=~/dotfiles_orig
@@ -13,7 +14,7 @@ for file in $homedirdotfiles; do
     if [ -f ~/$file ]
 	then
 	echo "Creating backup of original $file in $dotfileorig"
-	mv ~/$file $dotfileorig
+	mv -n ~/$file $dotfileorig
 	
     fi
 
@@ -30,7 +31,7 @@ for file in $emacsinit; do
     if [ -f ~/.emacs.d/$file ]
 	then
 	echo "Creating backup of original $file in $dotfileorig"
-	mv ~/.emacs.d/$file $dotfileorig
+	mv -n ~/.emacs.d/$file $dotfileorig
 	
     fi
 
