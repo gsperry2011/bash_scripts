@@ -1,14 +1,23 @@
 
 dotfilesource=~/git/dotfiles/testvm
 dotfileorig=~/dotfiles_orig
-homedirdotfiles=".gitconfig" #".bashrc .bash_profile .gitconfig .tmux.conf .xinitrc .Xresources"
+homedirdotfiles=".bashrc .bash_profile .gitconfig .tmux.conf .xinitrc .Xresources"
 
 echo "Creating backup of original dotfiles in $dotfileorig"
 mkdir -p $dotfileorig
 
 for file in $homedirdotfiles; do
-    echo "Moving $file to $dotfileorig if it exists"
-    mv ~/$homedirdotfiles $dotfileorig
-    echo "Creating symlink to $file in ~"
-    ln -s $dotfilesource/$homedirdotfiles ~/$homedirdotfiles
+    
+    # backup file if an original exists
+    if [ -f ~/$file ]
+	then
+	echo "Creating backup of original $file in $dotfileorig"
+	mv ~/$file $dotfileorig
+	
+    fi
+
+echo "Creating symlink to $file in ~"
+ln -s $dotfilesource/$file ~/$file
+
+
 done
