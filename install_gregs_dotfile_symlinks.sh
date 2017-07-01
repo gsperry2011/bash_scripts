@@ -8,6 +8,7 @@ emacsinit="init.el"
 echo "Backups of original dotfiles will be created in $dotfileorig"
 mkdir -p $dotfileorig
 
+# Backup and symlink of .dotfiles in ~
 for file in $homedirdotfiles; do
     
     # backup file if an original exists
@@ -24,7 +25,7 @@ ln -s $dotfilesource/$file ~/$file
 
 done
 
-
+# Backup and symlink of emacs init.el
 for file in $emacsinit; do
     
     # backup file if an original exists
@@ -35,7 +36,7 @@ for file in $emacsinit; do
 	
     fi
 
-echo "Creating symlink to $file in ~"
+echo "Creating symlink to $file in ~/.emacs.d/"
 ln -s $dotfilesource/$file ~/.emacs.d/$file
 
 
