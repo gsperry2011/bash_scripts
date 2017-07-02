@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source ~/colortests/simplercolor.sh
+source ~/colortests/256colors2.pl
+xrdb -q
+dircolors
+echo $TERM
+ls ~/colortests/test-directory
