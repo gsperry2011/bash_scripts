@@ -2,15 +2,15 @@
 
 echo 'output from simplercolor.sh:'
 echo
-source ~/colortests/simplercolor.sh
+source ./tests/simplercolor.sh
 
 echo 'output from 256colors2.pl:'
 echo
-perl ~/colortests/256colors2.pl
+perl ./tests/256colors2.pl
 
 echo 'example ls test-directory:'
 echo
-ls --color=auto ~/colortests/test-directory
+ls --color=auto ./test-directory
 
 echo '===================='
 xrdb -q
