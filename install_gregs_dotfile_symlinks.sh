@@ -9,6 +9,7 @@ dotfileorig=~/dotfiles_orig
 homedirdotfiles=".bashrc .bash_profile .gitconfig .tmux.conf .xinitrc .Xresources"
 emacsinit="init.el"
 i3config="config"
+roficonfig="roficonfig"
 
 echo "Backups of original dotfiles will be created in $dotfileorig"
 mkdir -p $dotfileorig
@@ -60,5 +61,22 @@ for file in $i3config; do
 
 echo "Creating symlink to $file in ~/.config/i3/"
 ln -s $dotfilesource/$file ~/.config/i3/$file
+
+done
+
+# Backup and symlink of rofi config file // this by default does not
+# exist, but the default name would conflict with i3 config file
+for file in $roficonfig; do
+    
+    # backup file if an original exists
+    if [ -f ~/.config/rofi/$file ]
+	then
+	echo "Creating backup of original $file in $dotfileorig"
+	mv -n ~/.config/rofi/$file $dotfileorig
+	
+    fi
+
+echo "Creating symlink to $file in ~/.config/rofi/"
+ln -s $dotfilesource/$file ~/.config/rofi/$file
 
 done
