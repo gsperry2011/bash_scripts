@@ -25,7 +25,7 @@ for file in $homedirdotfiles; do
     fi
 
 echo "Creating symlink to $file in ~"
-ln -s $dotfilesource/$file ~/$file
+ln -fs $dotfilesource/$file ~/$file
 
 
 done
@@ -42,7 +42,7 @@ for file in $emacsinit; do
     fi
 
 echo "Creating symlink to $file in ~/.emacs.d/"
-ln -s $dotfilesource/$file ~/.emacs.d/$file
+ln -fs $dotfilesource/$file ~/.emacs.d/$file
 
 
 done
@@ -59,6 +59,6 @@ for file in $i3config; do
     fi
 
 echo "Creating symlink to $file in ~/.config/i3/"
-ln -s $dotfilesource/$file ~/.config/i3/$file
+ln -sf $dotfilesource/$file ~/.config/i3/$file
 
 done
