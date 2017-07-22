@@ -10,6 +10,7 @@ homedirdotfiles=".bashrc .bash_profile .gitconfig .tmux.conf .xinitrc .Xresource
 emacsinit="init.el"
 i3config="config"
 roficonfig="roficonfig"
+dircolors=".dircolors"
 
 echo "Backups of original dotfiles will be created in $dotfileorig"
 mkdir -p $dotfileorig
@@ -78,5 +79,20 @@ for file in $roficonfig; do
 
 echo "Creating symlink to $file in ~/.config/rofi/"
 ln -s $dotfilesource/$file ~/.config/rofi/$file
+
+done
+
+for file in $dircolors; do
+    
+    # backup file if an original exists
+    if [ -f ~/$file ]
+	then
+	echo "Creating backup of original $file in $dotfileorig"
+	mv -n ~/$file $dotfileorig
+	
+    fi
+
+echo "Creating symlink to $file in ~/.dircolors/"
+ln -s $dotfilesource/$file ~/$file
 
 done
