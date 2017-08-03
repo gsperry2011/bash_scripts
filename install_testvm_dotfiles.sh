@@ -62,3 +62,19 @@ echo "Creating symlink to $file in ~/.config/i3/"
 ln -s $dotfilesource/$file ~/.config/i3/$file
 
 done
+
+# Backup and symlink creation of public scripts dir
+for file in $pubscripts; do
+    
+    # backup file if an original exists
+    if [ -f ~/$file ]
+	then
+	echo "Creating backup of original $file in $dotfileorig"
+	mv -n ~/$file $dotfileorig
+	
+    fi
+
+echo "Creating symlink to $file in ~"
+ln -sf ~/git/dotfiles/testvm/scripts ~/$file
+
+done
