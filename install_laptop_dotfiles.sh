@@ -9,6 +9,7 @@ dotfileorig=~/dotfiles_orig
 homedirdotfiles=".bashrc .bash_profile .gitconfig .tmux.conf .xinitrc .Xresources"
 emacsinit="init.el"
 i3config="config"
+pubscripts="scripts"
 
 echo "Backups of original dotfiles will be created in $dotfileorig"
 mkdir -p $dotfileorig
@@ -60,5 +61,21 @@ for file in $i3config; do
 
 echo "Creating symlink to $file in ~/.config/i3/"
 ln -sf $dotfilesource/$file ~/.config/i3/$file
+
+done
+
+# Backup and symlink creation of public scripts dir
+for file in $pubscripts; do
+    
+    # backup file if an original exists
+    if [ -f ~/$file ]
+	then
+	echo "Creating backup of original $file in $dotfileorig"
+	mv -n ~/$file $dotfileorig
+	
+    fi
+
+echo "Creating symlink to $file in ~"
+ln -sf ~/git/dotfiles/laptop/scripts ~/$file
 
 done
