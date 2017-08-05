@@ -67,7 +67,16 @@ done
 # Backup and symlink of rofi config file // this by default does not
 # exist, but the default name would conflict with i3 config file
 for file in $roficonfig; do
+
+    #creating our custom directory to avoid i3 conflicts if it does
+    #not exist
+    if [ ! -d ~/.config/rofi/ ]
+    then
+	echo "directory ~/.config/rofi/ does not exist and will be created"
+	mkdir ~/.config/rofi/
+    fi
     
+	
     # backup file if an original exists
     if [ -f ~/.config/rofi/$file ]
 	then
