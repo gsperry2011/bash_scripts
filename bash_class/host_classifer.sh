@@ -16,38 +16,40 @@ do
     echo "===================="
     echo "File = $F"
 
-    cat $F | while read LINE
-    do
-	#echo "Line: $LINE"
+    # The total contents of the inventory file
+    LINES=$(cat $F)
 
+    # For each line in the inventory file..
+    for L in $LINES
+    do
 	# Classify by Environment
-	case $LINE in
+	case $L in
 	    usoh4d*)
-		echo "Development: $LINE"
+		echo "Development: $L"
 		((DEVELOPMENT++))
 		;;
 	    usoh4p*)
-		echo "Production: $LINE"
+		echo "Production: $L"
 		((PRODUCTION++))
 		;;
 	    *)
-		echo "Other: $LINE"
+		echo "Other: $L"
                 ((OTHER_ENV++))
 		;;
 	esac
 
 	# Classify by OS type
-	case $LINE in
+	case $L in
 	    usoh4?l*)
-		echo "Linux: $LINE"
+		echo "Linux: $L"
 		((LINUX++))
 		;;
 	    usoh4?w*)
-		echo "Windows: $LINE"
+		echo "Windows: $L"
 		((WINDOWS++))
 		;;
 	    *)
-		echo "Other OS: $LINE"
+		echo "Other OS: $L"
 		((OTHER_OS++))
 		;;
 	esac
