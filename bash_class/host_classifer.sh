@@ -25,15 +25,12 @@ do
 	# Classify by Environment
 	case $L in
 	    usoh4d*)
-		echo "Development: $L"
 		((DEVELOPMENT++))
 		;;
 	    usoh4p*)
-		echo "Production: $L"
 		((PRODUCTION++))
 		;;
 	    *)
-		echo "Other: $L"
                 ((OTHER_ENV++))
 		;;
 	esac
@@ -41,15 +38,12 @@ do
 	# Classify by OS type
 	case $L in
 	    usoh4?l*)
-		echo "Linux: $L"
 		((LINUX++))
 		;;
 	    usoh4?w*)
-		echo "Windows: $L"
 		((WINDOWS++))
 		;;
 	    *)
-		echo "Other OS: $L"
 		((OTHER_OS++))
 		;;
 	esac
